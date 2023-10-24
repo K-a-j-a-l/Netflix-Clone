@@ -12,10 +12,10 @@ export default function App() {
         Route exact path = "/Login"
         element = { < Login / > }
         /> <
-        Route exact path = "/"
+        Route exact path = "/SignUp"
         element = { < SignUp / > }
         /> <
-        Route exact path = "/Netflix"
+        Route exact path = "/"
         element = { < Netflix / > }
         /> <
         /Routes> <
