@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import Navbar from '../Components/Navbar';
-import BackgroundImage from '../Components/BackgroundImage';
-import MovieLogo from "../assets/homeTitle.webp"
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import Navbar from "../Components/Navbar";
+import backgroundImage from "../assets/home.jpg";
+import MovieLogo from "../assets/homeTitle.webp";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../Utils/Firebase-config";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +10,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchMovies, getGenres } from "../store";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import Slider from "../Components/Slider.jsx"
-export default function Netflix() {
+import Slider from "../Components/Slider";
+
+function Netflix() {
     const [isScrolled, setIsScrolled] = useState(false);
     const movies = useSelector((state) => state.netflix.movies);
     const genres = useSelector((state) => state.netflix.genres);
@@ -45,7 +47,7 @@ export default function Netflix() {
         /> <
         div className = "hero" >
         <
-        img src = { BackgroundImage }
+        img src = { backgroundImage }
         alt = "background"
         className = "background-image" /
         >
@@ -130,3 +132,4 @@ const Container = styled.div `
     }
   }
 `;
+export default Netflix;
