@@ -4,6 +4,8 @@ import Login from './Pages/Login'
 import SignUp from './Pages/SignUp'
 import Netflix from './Pages/Netflix'
 import Player from './Pages/Player'
+import MoviePage from './Pages/Movies'
+import TVShows from './Pages/TVShows'
 export default function App() {
     return ( <
         BrowserRouter >
@@ -19,7 +21,13 @@ export default function App() {
         Route exact path = "/player"
         element = { < Player / > }
         /> <
-        Route exact path = "/"
+        Route exact path = "/tv"
+        element = { < TVShows / > }
+        /> <
+        Route exact path = "/movies"
+        element = { < MoviePage / > }
+        /> <
+        Route exact path = "/netflix"
         element = { < Netflix / > }
         /> <
         /Routes> <
