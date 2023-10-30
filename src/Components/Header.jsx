@@ -12,10 +12,11 @@ export default function Header(props) {
         img src = { logo }
         alt = "logo" / >
         <
-        /div> <
+        /div>  <
         button onClick = {
-            () => navigate(props.Login ? "/Login" : "/SignUp") } > { props.Login ? "Log In" : "Sign in" } <
-        /button> <
+            () => navigate(props.Login ? "/Login" : "/SignUp")
+        } > { props.Login ? "Log In" : "Sign in" } <
+        /button>  <
         /Container>
     )
 }

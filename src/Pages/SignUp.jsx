@@ -1,94 +1,78 @@
 import {
     createUserWithEmailAndPassword,
     onAuthStateChanged,
-} from "firebase/auth";
-import React, { useState } from 'react'
+  } from "firebase/auth";
+import React,{useState} from 'react'
 import styled from 'styled-components'
 import BackgroundImage from '../Components/BackgroundImage';
 import Header from '../Components/Header';
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import { firebaseAuth } from "../Utils/Firebase-config";
 export default function SignUp() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [formValues, setFormValues] = useState({
-        email: "",
-        password: ""
+    const[showPassword, setShowPassword]=useState(false);
+    const[formValues, setFormValues]=useState({
+        email:"",
+        password:""
     });
-    const navigate = useNavigate();
-    const handleSignIn = async() => {
+    const navigate=useNavigate();
+    const handleSignIn = async () => {
         try {
-            const { email, password } = formValues;
-            await createUserWithEmailAndPassword(firebaseAuth, email, password);
+          const { email, password } = formValues;
+          await createUserWithEmailAndPassword(firebaseAuth, email, password);
         } catch (error) {
-            console.log(error);
+          console.log(error);
         }
-    };
+      };
+    
+      onAuthStateChanged(firebaseAuth, (currentUser) => {
+        if (currentUser) navigate("/");
+      });
+  return ( 
+    <Container showPassword={showPassword}>
+        <BackgroundImage/>
+        <div className="content">
+            <Header Login/>
+            <div className="body flex column a-center j-center">
+                <div className="text flex column">
+                    <h1>Unlimited Movies, TV Shows and more</h1>
+                    <h4>Watch Anywhere, Cancel Anytime</h4>
+                    <h6>
+                        Ready to Watch? Enter your email to create or restart membership
+                    </h6>
+                </div>
+                <div className="form">
+                    <input type="email" placeholder='Email Address' onChange={(e) =>
+                        setFormValues({
+                            ...formValues,
+                            [e.target.name]: e.target.value,
+                        })
+                    }
+                    name="email"
+                    value={formValues.email} />
+                    {
+                        showPassword && (<input type="password" placeholder='Enter Password' onChange={(e) =>
+                        setFormValues({
+                            ...formValues,
+                            [e.target.name]: e.target.value,
+                        })
+                    }
+                    name="password"
+                    value={formValues.password} />)
+                    }
+                    {
+                        !showPassword && (<button onClick={()=>setShowPassword(true)}>Get Started</button>
+                    )}
+                    
+                </div>
+                <button onClick={handleSignIn}>SignUp</button>
+            </div>
+        </div>
+        
+    </Container>
+  );
+}
 
-    onAuthStateChanged(firebaseAuth, (currentUser) => {
-        if (currentUser) navigate("/");  
-    });
-    return ( <
-        Container showPassword = { showPassword } >
-        <
-        BackgroundImage / >
-        <
-        div className = "content" >
-        <
-        Header Login / >
-        <
-        div className = "body flex column a-center j-center" >
-        <
-        div className = "text flex column" >
-        <
-        h1 > Unlimited Movies, TV Shows and more < /h1> <
-        h4 > Watch Anywhere, Cancel Anytime < /h4> <
-        h6 >
-        Ready to Watch ? Enter your email to create or restart membership <
-        /h6> <
-        /div> <
-        div className = "form" >
-        <
-        input type = "email"
-        placeholder = 'Email Address'
-        onChange = {
-            (e) =>
-            setFormValues({
-                ...formValues,
-                [e.target.name]: e.target.value,
-            })
-        }
-        name = "email"
-        value = { formValues.email }
-        /> {
-            showPassword && ( < input type = "password"
-                placeholder = 'Enter Password'
-                onChange = {
-                    (e) =>
-                    setFormValues({
-                        ...formValues,
-                        [e.target.name]: e.target.value,
-                    })
-                }
-                name = "password"
-                value = { formValues.password }
-                />)
-            } {
-                !showPassword && ( < button onClick = {
-                    () => setShowPassword(true) } > Get Started < /button>)
-            }
-
-            <
-            /div> <
-            button onClick = { handleSignIn } > SignUp < /button> <
-                /div> <
-                /div>
-
-            <
-            /Container>
-        );
-    }
-
-    const Container = styled.div `
+const Container=styled.div`
     position:relative;
     .content{
         position:absolute;

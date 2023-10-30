@@ -31,13 +31,15 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                 email,
                 data: movieData,
             });
+            console.log("added");
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     };
 
     return ( <
-        Container onMouseEnter = {
+        Container key = { movieData.id }
+        onMouseEnter = {
             () => setIsHovered(true) }
         onMouseLeave = {
             () => setIsHovered(false) } >

@@ -23,8 +23,7 @@ function Login() {
         if (currentUser) navigate("/");
     });
 
-    return ( <
-        Container >
+    return ( < Container >
         <
         BackgroundImage / >
         <
@@ -38,27 +37,29 @@ function Login() {
         <
         div className = "title" >
         <
-        h3 > Login < /h3> <
-        /div> <
+        h3 > Login < /h3>  <
+        /div>  <
         div className = "container flex column" >
         <
         input type = "text"
         placeholder = "Email"
         onChange = {
-            (e) => setEmail(e.target.value) }
+            (e) => setEmail(e.target.value)
+        }
         value = { email }
-        /> <
+        />  <
         input type = "password"
         placeholder = "Password"
         onChange = {
-            (e) => setPassword(e.target.value) }
+            (e) => setPassword(e.target.value)
+        }
         value = { password }
-        /> <
-        button onClick = { handleLogin } > Login to your account < /button> <
-        /div> <
-        /div> <
-        /div> <
-        /div> <
+        />  <
+        button onClick = { handleLogin } > Login to your account < /button>  <
+        /div>  <
+        /div>  <
+        /div>  <
+        /div>  <
         /Container>
     );
 }
